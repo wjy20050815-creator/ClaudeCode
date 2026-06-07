@@ -22,7 +22,7 @@ _SSL_CTX = ssl.create_default_context()
 _SSL_CTX.check_hostname = False
 _SSL_CTX.verify_mode = ssl.CERT_NONE
 
-VAULT_YOUTUBE = Path("/Users/jiayi/Documents/Obsidian Vault/就活/_蒸馏システム/素材/YouTube")
+VAULT_YOUTUBE = Path("/Users/jiayi/Documents/Obsidian Vault/就活/知识库/_蒸馏システム/素材/YouTube")
 VENV_PY = Path.home() / ".claude/skills/obsidian-second-brain/.venv/bin/python"
 
 INDUSTRY_PATTERNS = [

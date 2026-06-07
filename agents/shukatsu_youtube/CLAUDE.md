@@ -12,7 +12,7 @@ YouTube URL → メタデータ + 字幕抽出 → 業界分類 → Obsidian Vau
 
 | 项目 | 路径 |
 |------|------|
-| Vault 出力 | `/Users/jiayi/Documents/Obsidian Vault/就活/_蒸馏システム/素材/YouTube/` |
+| Vault 出力 | `/Users/jiayi/Documents/Obsidian Vault/就活/知识库/_蒸馏システム/素材/YouTube/` |
 | Python venv | `~/.claude/skills/obsidian-second-brain/.venv/bin/python`（借用其他 skill 的 venv，删除该 skill 会破坏本 agent） |
 | NotebookLM 認証 | `~/Library/Application Support/notebooklm-mcp/browser_state/state.json` |
 | スクリーンショット | `agents/shukatsu_youtube/screenshots/` |

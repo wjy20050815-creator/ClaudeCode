@@ -25,6 +25,7 @@ const NOTEBOOKS = {
     videos: [
       { url: "https://www.youtube.com/watch?v=LqzDPRL76Wk", title: "投資銀行内定のための5つの条件" },
       { url: "https://www.youtube.com/watch?v=ZLEL3oXSEG4", title: "外銀内定者の特徴はここだ！" },
+      { url: "https://www.youtube.com/watch?v=J_jpgGrh45s", title: "田中渓/上智首席から面接53回でゴールドマンサックス内定し最高幹部&年収数億→17年で退社し2000億の資産運用" },
     ]
   },
   "全行業共通就活": {
