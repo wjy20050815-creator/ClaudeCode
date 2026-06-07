@@ -41,7 +41,8 @@ macOS 自动化 agent 集合，统一通过 Server酱推送内容到微信。
   - `notes_sync` 不接 slot、不写 stamp（按 launchd 间隔触发，无补跑机制）
   - `paper_reader` / `shukatsu_youtube` 是手动 CLI，参数透传给 python
 - **LaunchAgents**：`~/Library/LaunchAgents/com.<agent_name>.<slot>.plist`
-- **日志**：`agents/<name>/<name>.log`，定时 agent 由 `run.sh` 自动 tail 截断（financial_news/brain_science 500 行，daily_brief 300 行），notes_sync 不截断，勿手动清空
+- **日志**：`agents/<name>/<name>.log`，定时 agent 由 `run.sh` 自动 tail 截断（financial_news/brain_science 500 行，daily_brief 300 行，notes_sync 2000 行），勿手动清空。注：notes_sync 日志由 plist 重定向写入，截断用 `cat` 原地覆盖而非 `mv`
+- **agent 目录结构差异（均为有意，非遗漏）**：`requirements.txt` 仅「用 Python 且有独立依赖」的 agent 有（financial_news/brain_science/paper_reader/wallstreet_ai）——notes_sync 依赖写在 `install.sh`、shukatsu 是 Node、daily_brief 复用根环境；`catchup.sh` 仅「关机会错过固定时段、需开机补跑」的 agent 有（financial_news/brain_science）
 
 | 变量 | 用途 |
 |------|------|

@@ -15,7 +15,7 @@ Apple Notes ↔ Obsidian Vault 双向同步。
 - Vault：`/Users/jiayi/Documents/Obsidian Vault`
 - 频率：每 4 小时（launchd StartInterval=14400）
 - 状态文件：`{vault}/.notes_sync_state.json`（隐藏文件，不提交 git）
-- `run.sh` 不接 slot 参数、不写 `.stamps/`、不截断 `sync.log`（与其他定时 agent 不同 — 这是连续 interval 模式，无补跑概念）
+- `run.sh` 不接 slot 参数、不写 `.stamps/`（连续 interval 模式，无补跑概念）；启动前把 `sync.log` 原地截断至最近 2000 行——日志由 plist `StandardOutPath` 重定向写入，故必须用 `cat` 原地覆盖而非 `mv`（换 inode 会丢输出）
 - 依赖：Python `markdownify` / `markdown` / `beautifulsoup4`（由 `install.sh` 安装到系统 Python 3.14）
 
 ## 文件
