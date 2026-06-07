@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.financial_news.morning2</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/jiayi/Developer/ClaudeCode/agents/financial_news/run.sh</string>
+        <string>morning2</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>10</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/jiayi/Developer/ClaudeCode/agents/financial_news/financial_news.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jiayi/Developer/ClaudeCode/agents/financial_news/financial_news.log</string>
+</dict>
+</plist>
