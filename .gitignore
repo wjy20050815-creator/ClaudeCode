@@ -1,0 +1,24 @@
+# --- secrets ---
+.env
+# VPN client configs contain live credentials (passwords, Reality keys, server IPs)
+vpn-clients/
+
+# --- python ---
+__pycache__/
+*.pyc
+
+# --- macOS ---
+.DS_Store
+
+# --- runtime state (logs, run stamps, locks) ---
+*.log
+*.bak
+.stamps/
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# --- debug artifacts ---
+agents/shukatsu_youtube/screenshots/
+
+# --- vendored subproject (own git remote: breferrari/obsidian-mind) ---
+obsidian-mind/
