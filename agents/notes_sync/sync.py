@@ -19,7 +19,9 @@ from pathlib import Path
 VAULT = Path("/Users/jiayi/Documents/Obsidian Vault")
 STATE_FILE = VAULT / ".notes_sync_state.json"
 
-SKIP_FOLDERS = {"Recently Deleted", "Trash", "Assets", "Notes"}
+# "Claude memory" is the Claude Code persistent-memory store (symlinked from
+# ~/.claude); syncing would strip its frontmatter when injecting notes_id.
+SKIP_FOLDERS = {"Recently Deleted", "Trash", "Assets", "Notes", "Claude memory"}
 
 logging.basicConfig(
     level=logging.INFO,

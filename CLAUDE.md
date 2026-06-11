@@ -61,6 +61,7 @@ macOS 自动化 agent 集合，统一通过 Server酱推送内容到微信。
 | `find-skills` | 搜索安装新 skill |
 | `json-canvas` | 读写 Obsidian `.canvas` 文件 |
 | `karpathy-guidelines` | 减少 LLM 编码错误的行为准则 |
+| `kigyou-report` | 就活向け企業分析レポート（12 セクション構造化、就活/企業分析报告/ に保存） |
 | `meal-planner` | AI 饮食规划：冰箱食材管理、每周菜单生成、微信联动 |
 | `obsidian-bases` | 创建/编辑 `.base` 数据库文件 |
 | `obsidian-cli` | 命令行操控 Obsidian 实例 |
@@ -100,3 +101,5 @@ launchctl load   ~/Library/LaunchAgents/com.financial_news.morning2.plist
 - 新增 agent 时，在上方 Agents 表格追加一行
 - `.env` 只加不删，废弃的 key 注释掉而非删除
 - `*.log` 不提交 git，不手动截断，由各 agent 自行 append
+- `agents/*/history.txt` 是运行时去重状态（每次推送后变化），不提交 git（已 gitignore）
+- 新增/删除 skill 时，同步更新上方 Skills 表格

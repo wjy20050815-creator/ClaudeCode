@@ -33,3 +33,4 @@ Apple Notes ↔ Obsidian Vault 双向同步。
 - 附件子目录下的图片不同步回 Notes
 - Obsidian 中新建的 `.md` 文件，只要在已同步的文件夹下，就会被推到 Notes
 - 不在已知 Notes 文件夹下的 Obsidian 文件不会被推到 Notes
+- `Claude memory/` 在 `SKIP_FOLDERS` 中永久排除——它是 Claude Code 持久 memory 的真身（`~/.claude/projects/.../memory` symlink 指向），同步会剥离其 frontmatter，禁止移出排除列表
