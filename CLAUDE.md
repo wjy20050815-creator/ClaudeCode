@@ -73,6 +73,10 @@ macOS 自动化 agent 集合，统一通过 Server酱推送内容到微信。
 | `stock-report` | 个股深度投资分析报告（日/美/港/欧，4 种风格，12 章结构化） |
 | `shukatsu` | 日本就活蒸馏コーチ（ingest / distill / coach / grill 4 模式） |
 
+> 本表只覆盖 `~/.claude/skills/`。另外两层不在此表、勿重复建表（按各自来源为准）：
+> `~/.claude/commands/` 的 31 个斜杠命令（`/youtube` `/research` `/obsidian-*` 等）**全部是 obsidian-second-brain 仓库内 `commands/` 的 symlink**——删该 skill 会同时带崩这 31 个命令和 shukatsu_youtube agent（借用其 venv）；
+> marketplace 插件 6 个（weixin / hookify / skill-creator / github / claude-md-management / claude-code-setup），清单正本是 `~/.claude/plugins/installed_plugins.json`。
+
 ## 编码准则（Karpathy）
 
 1. **编码前先思考**：暴露假设，有歧义先提问
