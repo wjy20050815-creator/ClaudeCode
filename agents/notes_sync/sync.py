@@ -16,7 +16,10 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-VAULT = Path("/Users/jiayi/Documents/Obsidian Vault")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from vault_paths import vault_path
+
+VAULT = vault_path("VAULT_ROOT")
 STATE_FILE = VAULT / ".notes_sync_state.json"
 
 # "Claude memory" is the Claude Code persistent-memory store (symlinked from

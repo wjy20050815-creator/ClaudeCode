@@ -1,7 +1,6 @@
 #!/bin/bash
-set -a
-source /Users/jiayi/Developer/ClaudeCode/.env
-set +a
+# 作用域注入：只拿本 agent 需要的 key（keys not prompts）
+eval "$(/Users/jiayi/Developer/ClaudeCode/tools/load_env.sh GROQ_API_KEY NEWSAPI_KEY GNEWS_KEY SERVERCHAN_KEY)"
 
 SLOT="${1:-unknown}"
 shift

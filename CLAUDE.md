@@ -10,7 +10,7 @@ macOS 自动化 agent 集合，统一通过 Server酱推送内容到微信。
 | 脑科学 | `agents/brain_science/` | 每日早晨/夜间推送脑科学知识 | launchd（catchup + night） |
 | 论文阅读 | `agents/paper_reader/` | PubMed/CiNii 抓取学术论文整理到 Obsidian Vault | 手动 CLI |
 | 笔记同步 | `agents/notes_sync/` | Apple Notes ↔ Obsidian 双向同步 | launchd（4 小时） |
-| 每日简报 | `agents/daily_brief/` | 读取 vault 近期内容，生成联结/模式/问题简报到 Inbox/ | launchd 08:30 |
+| 每日简报 | `agents/daily_brief/` | 读取 vault 近期内容＋当日日历，生成联结/模式/问题简报到 每日思维启发简报/ | launchd 08:30 |
 | 就活 YouTube | `agents/shukatsu_youtube/` | YouTube 字幕抓取 → Obsidian 素材 → NotebookLM 投入 | 手动 CLI |
 | 华尔街 AI 观点 | `agents/wallstreet_ai/` | 各大投行官方栏目的 AI 投资文章 → 主题聚合中文播报 | launchd（周一/周五 08:00） |
 
@@ -32,7 +32,9 @@ macOS 自动化 agent 集合，统一通过 Server酱推送内容到微信。
 ## 基础设施
 
 - **Python**：`/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`
-- **环境变量**：统一从 `.env` 加载，各 `run.sh` 以 `set -a; source .env; set +a` 注入
+- **环境变量（作用域注入，keys not prompts）**：`.env` 仍是唯一存储处，但各 `run.sh` 经 `tools/load_env.sh KEY1 KEY2 ...` 只注入自己需要的 key，agent 进程拿不到无关凭证。新增 agent 时在其 run.sh 声明所需 key 列表
+- **Vault 路径注册表**：`vault.paths.env`（仓库根）是所有 Obsidian vault 路径的**唯一定义处**。python 经 `tools/vault_paths.py` 的 `vault_path("KEY")` 解析，shell 直接 source，skill 在 SKILL.md 里引用 key 名。**任何 agent/skill 不得硬编码 vault 路径**；vault 重组时只改注册表，然后跑 launchd-auditor 验证
+- **index/log 对账（vault hot cache 治理）**：`tools/vault_index_sync.py --fix --reason <来源>` 把 vault 的 `index.md` 与实际文件对账（补缺失条目、删死条目、按真实文件夹重组），并在 vault `log.md` 记录。写 vault 的 agent（daily_brief / notes_sync / paper_reader / shukatsu_youtube）在运行结束后自动调用；daily_brief 的每日 08:30 调用兜住其他来源（含手动编辑）的漂移
 - **Stamp 文件**：`.stamps/<slot>`（项目根目录下，**不是** `~/.stamps/`），防止同一时段重复推送；删除对应文件即可强制补跑
 - **`run.sh` 参数约定**：
   - `financial_news` / `brain_science` 第一个参数是 slot 名（`morning2`/`afternoon`/`night` 或 `morning`/`night`），成功后写 `.stamps/<slot>`（brain_science 写 `brain_<slot>`）
@@ -69,7 +71,7 @@ macOS 自动化 agent 集合，统一通过 Server酱推送内容到微信。
 | `obsidian-second-brain` | Obsidian vault 全体操作（蒸馏 / 研究 / kanban 等） |
 | `paper-reader` | 单篇论文读み込みフロー（paper_reader agent と連携） |
 | `stock-report` | 个股深度投资分析报告（日/美/港/欧，4 种风格，12 章结构化） |
-| `shukatsu` | 日本就活蒸馏コーチ（ingest / distill / coach 3 模式） |
+| `shukatsu` | 日本就活蒸馏コーチ（ingest / distill / coach / grill 4 模式） |
 
 ## 编码准则（Karpathy）
 
@@ -103,3 +105,4 @@ launchctl load   ~/Library/LaunchAgents/com.financial_news.morning2.plist
 - `*.log` 不提交 git，不手动截断，由各 agent 自行 append
 - `agents/*/history.txt` 是运行时去重状态（每次推送后变化），不提交 git（已 gitignore）
 - 新增/删除 skill 时，同步更新上方 Skills 表格
+- vault 路径一律经 `vault.paths.env` 解析，发现硬编码按回归处理（2026-06-07 路径断线事故的教训）

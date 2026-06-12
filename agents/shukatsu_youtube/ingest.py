@@ -22,7 +22,10 @@ _SSL_CTX = ssl.create_default_context()
 _SSL_CTX.check_hostname = False
 _SSL_CTX.verify_mode = ssl.CERT_NONE
 
-VAULT_YOUTUBE = Path("/Users/jiayi/Documents/Obsidian Vault/就活/知识库/_蒸馏システム/素材/YouTube")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from vault_paths import vault_path
+
+VAULT_YOUTUBE = vault_path("VAULT_SHUKATSU_SOZAI_YT")
 VENV_PY = Path.home() / ".claude/skills/obsidian-second-brain/.venv/bin/python"
 
 INDUSTRY_PATTERNS = [
@@ -178,6 +181,14 @@ def main():
         print("\nNotebookLM に追加すべき URL:")
         for r in results:
             print(f"  [{r['industry']}] {r['url']}")
+        # vault 治理：写入后对账 index/log（best-effort，失败不影响 ingest 结果）
+        import subprocess
+        subprocess.run(
+            [sys.executable,
+             str(Path(__file__).resolve().parents[2] / "tools" / "vault_index_sync.py"),
+             "--fix", "--reason", "shukatsu_youtube"],
+            check=False,
+        )
 
 
 if __name__ == "__main__":

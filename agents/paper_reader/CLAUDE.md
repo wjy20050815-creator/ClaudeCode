@@ -10,9 +10,9 @@ URL / DOI / PDF パス → 全文抽出（PyMuPDF / BeautifulSoup）→ Claude A
 
 | 项目 | 路径 |
 |------|------|
-| Vault | `/Users/jiayi/Documents/Obsidian Vault` |
-| ノート出力 | `ゼミ发表/Papers/` |
-| 概念ノート | `ゼミ发表/Concepts/` |
+| Vault | `vault.paths.env` の `VAULT_ROOT`（レジストリ解決、現在 `/Users/jiayi/Documents/Obsidian Vault`） |
+| ノート出力 | `VAULT_PAPERS`（現在 `ゼミ发表/Papers/`） |
+| 概念ノート | `VAULT_CONCEPTS`（現在 `ゼミ发表/Concepts/`） |
 | 履歴 JSON | `agents/paper_reader/papers.json` |
 | 一覧 MD | `agents/paper_reader/papers.md` |
 | 興味設定 | `research_interests.yaml`（`interests` / `excluded_keywords`） |
@@ -25,7 +25,7 @@ URL / DOI / PDF パス → 全文抽出（PyMuPDF / BeautifulSoup）→ Claude A
 agents/paper_reader/run.sh <url-or-pdf-path>
 ```
 
-`run.sh` は `.env` を読み込んで `ANTHROPIC_API_KEY` を注入してから `paper_reader.py` を起動する。
+`run.sh` は `tools/load_env.sh` 経由で `ANTHROPIC_API_KEY` **のみ**を注入してから `paper_reader.py` を起動し、終了後に `tools/vault_index_sync.py --fix --reason paper_reader` で vault の `index.md`/`log.md` を対账する（best-effort）。
 
 ## 注意事项
 

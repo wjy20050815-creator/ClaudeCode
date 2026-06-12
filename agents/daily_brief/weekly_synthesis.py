@@ -16,8 +16,11 @@ from pathlib import Path
 
 from groq import Groq
 
-VAULT = Path("/Users/jiayi/Documents/Obsidian Vault")
-INBOX = VAULT / "Inbox"
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from vault_paths import vault_path
+
+VAULT = vault_path("VAULT_ROOT")
+INBOX = vault_path("VAULT_INBOX")
 JST = timezone(timedelta(hours=9))
 
 SCAN_FOLDERS = [

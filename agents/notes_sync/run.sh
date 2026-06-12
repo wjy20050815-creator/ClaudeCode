@@ -9,4 +9,10 @@ if [ -f "$LOGFILE" ] && [ "$(wc -l < "$LOGFILE")" -gt 2000 ]; then
     tail -n 2000 "$LOGFILE" > "${LOGFILE}.tmp" && cat "${LOGFILE}.tmp" > "$LOGFILE" && rm -f "${LOGFILE}.tmp"
 fi
 
-exec "$PYTHON" "$SCRIPT_DIR/sync.py"
+"$PYTHON" "$SCRIPT_DIR/sync.py"
+RC=$?
+
+# vault 治理：同步可能新增/删除 vault 笔记，写完对账 index/log（best-effort）
+"$PYTHON" "$SCRIPT_DIR/../../tools/vault_index_sync.py" --fix --reason notes_sync || true
+
+exit $RC

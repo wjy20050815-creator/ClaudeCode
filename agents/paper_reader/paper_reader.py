@@ -23,9 +23,12 @@ from bs4 import BeautifulSoup
 OUTPUT_MD        = Path(__file__).parent / "papers.md"
 OUTPUT_JSON      = Path(__file__).parent / "papers.json"
 INTERESTS_CONFIG = Path(__file__).parent / "research_interests.yaml"
-OBSIDIAN_VAULT    = Path("/Users/jiayi/Documents/Obsidian Vault")
-OBSIDIAN_PAPERS   = OBSIDIAN_VAULT / "ゼミ发表" / "Papers"
-OBSIDIAN_CONCEPTS = OBSIDIAN_VAULT / "ゼミ发表" / "Concepts"
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from vault_paths import vault_path
+
+OBSIDIAN_VAULT    = vault_path("VAULT_ROOT")
+OBSIDIAN_PAPERS   = vault_path("VAULT_PAPERS")
+OBSIDIAN_CONCEPTS = vault_path("VAULT_CONCEPTS")
 
 MAX_CHARS         = 80_000
 HEAD_CHARS        = 35_000

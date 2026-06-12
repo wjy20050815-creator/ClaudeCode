@@ -1,7 +1,6 @@
 #!/bin/bash
-set -a
-source /Users/jiayi/Developer/ClaudeCode/.env
-set +a
+# 作用域注入：只拿本 agent 需要的 key（keys not prompts）
+eval "$(/Users/jiayi/Developer/ClaudeCode/tools/load_env.sh GROQ_API_KEY SERVERCHAN_KEY)"
 
 LOGFILE="/Users/jiayi/Developer/ClaudeCode/agents/daily_brief/daily_brief.log"
 STAMPDIR="/Users/jiayi/Developer/ClaudeCode/.stamps"
@@ -40,3 +39,8 @@ if [ $EXIT_CODE -eq 0 ]; then
 else
     echo "[$(date)] [fail] 简报生成失败，exit $EXIT_CODE" >> "$LOGFILE"
 fi
+
+# vault 治理：每日对账 index.md（hot cache）与 vault 实际文件，兜住所有写入者的漂移。
+# best-effort：对账失败不影响简报结果。
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 \
+    /Users/jiayi/Developer/ClaudeCode/tools/vault_index_sync.py --fix --reason daily_brief >> "$LOGFILE" 2>&1 || true

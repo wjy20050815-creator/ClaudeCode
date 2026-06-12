@@ -12,7 +12,7 @@ YouTube URL → メタデータ + 字幕抽出 → 業界分類 → Obsidian Vau
 
 | 项目 | 路径 |
 |------|------|
-| Vault 出力 | `/Users/jiayi/Documents/Obsidian Vault/就活/知识库/_蒸馏システム/素材/YouTube/` |
+| Vault 出力 | `vault.paths.env` の `VAULT_SHUKATSU_SOZAI_YT`（レジストリ解決、現在 `就活/知识库/_蒸馏システム/素材/YouTube/`） |
 | Python venv | `~/.claude/skills/obsidian-second-brain/.venv/bin/python`（借用其他 skill 的 venv，删除该 skill 会破坏本 agent） |
 | NotebookLM 認証 | `~/Library/Application Support/notebooklm-mcp/browser_state/state.json` |
 | スクリーンショット | `agents/shukatsu_youtube/screenshots/` |
@@ -61,4 +61,5 @@ node add_to_notebooklm.mjs
 - 字幕が取れない動画はスキップ（YouTube 内部 API による取得・API key 不要）
 - patchright が初回起動時に `state.json` を要求 — `notebooklm-mcp` の setup_auth で生成しておく
 - 同じ動画 ID を再 ingest しても上書きされる（差分マージなし）
+- ingest 完了後に `tools/vault_index_sync.py --fix --reason shukatsu_youtube` を自動実行し、vault の `index.md`/`log.md` を対账する（best-effort）
 - `shukatsu` skill（`/shukatsu ingest`）はこの agent をラップした対話インターフェース
