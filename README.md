@@ -1,5 +1,7 @@
 # ClaudeCode — macOS 自动化 agent 集合
 
+**简体中文** | [English](README.en.md) | [日本語](README.ja.md)
+
 一组运行在 macOS 上的个人自动化 agent：定时抓取新闻/学术/投行观点，经 LLM 整理后**通过 [Server酱](https://sct.ftqq.com/) 推送到微信**，或写入本地 [Obsidian](https://obsidian.md/) vault。由 `launchd` 调度，配套一套轻量治理基础设施（作用域密钥注入、路径注册表、index 对账、补跑机制）。
 
 > 这是一个真实在用的个人项目。仓库内不含任何密钥或个人数据——所有私人配置都以 `*.example` 模板入库，真身由 `.gitignore` 排除。
