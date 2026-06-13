@@ -1,11 +1,16 @@
 #!/bin/bash
+# 自定位仓库根，避免硬编码绝对路径（可跨机器/跨用户）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+PYTHON="${PYTHON:-/Library/Frameworks/Python.framework/Versions/3.14/bin/python3}"
+
 # 作用域注入：只拿本 agent 需要的 key（keys not prompts）
-eval "$(/Users/jiayi/Developer/ClaudeCode/tools/load_env.sh ANTHROPIC_API_KEY SERVERCHAN_KEY)"
+eval "$("$REPO_ROOT/tools/load_env.sh" ANTHROPIC_API_KEY SERVERCHAN_KEY)"
 
 SLOT="${1:-unknown}"
 shift 2>/dev/null
-LOGFILE="/Users/jiayi/Developer/ClaudeCode/agents/wallstreet_ai/wallstreet_ai.log"
-STAMPDIR="/Users/jiayi/Developer/ClaudeCode/.stamps"
+LOGFILE="$SCRIPT_DIR/wallstreet_ai.log"
+STAMPDIR="$REPO_ROOT/.stamps"
 mkdir -p "$STAMPDIR"
 
 # 保留最近 500 行，防止日志无限增长
@@ -13,14 +18,14 @@ if [ -f "$LOGFILE" ] && [ "$(wc -l < "$LOGFILE")" -gt 500 ]; then
     tail -500 "$LOGFILE" > "${LOGFILE}.tmp" && mv "${LOGFILE}.tmp" "$LOGFILE"
 fi
 
-cd "/Users/jiayi/Developer/ClaudeCode/agents/wallstreet_ai"
-/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 wallstreet_ai.py --slot "$SLOT" "$@" >> "$LOGFILE" 2>&1
+cd "$SCRIPT_DIR"
+"$PYTHON" wallstreet_ai.py --slot "$SLOT" "$@" >> "$LOGFILE" 2>&1
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ]; then
     echo "[重试] 首次失败（exit $EXIT_CODE），60 秒后重试..." >> "$LOGFILE"
     sleep 60
-    /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 wallstreet_ai.py --slot "$SLOT" "$@" >> "$LOGFILE" 2>&1
+    "$PYTHON" wallstreet_ai.py --slot "$SLOT" "$@" >> "$LOGFILE" 2>&1
     EXIT_CODE=$?
 fi
 

@@ -1,0 +1,18 @@
+# 研究興味設定（模板）— 复制为 research_interests.yaml 后改成你自己的领域
+#
+# interests：用于判定论文相关度的关键词（命中越多相关度越高）
+# excluded_keywords：命中即跳过的类型（书评・教科书介绍等非研究内容）
+#
+# 真实的 research_interests.yaml 已被 .gitignore 排除（含个人研究画像），仅本模板入库。
+# 留空时 paper_reader.py 内置默认关键词兜底。
+
+interests:
+  - machine learning
+  - natural language processing
+  - second language acquisition
+  - cognitive science
+
+excluded_keywords:
+  - book review
+  - textbook introduction
+  - errata

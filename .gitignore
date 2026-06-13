@@ -3,6 +3,15 @@
 # VPN client configs contain live credentials (passwords, Reality keys, server IPs)
 vpn-clients/
 
+# --- personal config (含个人路径/画像；各自有 *.example 模板入库) ---
+vault.paths.env
+agents/paper_reader/research_interests.yaml
+agents/shukatsu_youtube/batch_urls.txt
+
+# --- runtime output (论文抓取产出，随运行变化) ---
+agents/paper_reader/papers.json
+agents/paper_reader/papers.md
+
 # --- python ---
 __pycache__/
 *.pyc
@@ -19,8 +28,8 @@ agents/*/history.txt
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
 
-# --- debug artifacts ---
-agents/shukatsu_youtube/screenshots/
+# --- 私有 agent：不公开（含个人就活素材 + 机器特定 npx 路径，未做开源化） ---
+agents/shukatsu_youtube/
 
 # --- vendored subproject (own git remote: breferrari/obsidian-mind) ---
 obsidian-mind/

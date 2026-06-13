@@ -40,7 +40,7 @@ macOS 日历（osascript，当日事件）+ Obsidian vault（Clippings/只为记
 ## 每周合成（手动）
 
 ```bash
-cd /Users/jiayi/Developer/ClaudeCode/agents/daily_brief
+cd <repo>/agents/daily_brief
 python3 weekly_synthesis.py
 # 回溯更长时间：
 python3 weekly_synthesis.py --days 14

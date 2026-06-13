@@ -12,7 +12,7 @@ Apple Notes ↔ Obsidian Vault 双向同步。
 
 ## 配置
 
-- Vault：经 `vault.paths.env` 注册表解析（`VAULT_ROOT`，当前 `/Users/jiayi/Documents/Obsidian Vault`）
+- Vault：经 `vault.paths.env` 注册表解析（`VAULT_ROOT`，示例 `$HOME/Documents/Obsidian Vault`）
 - 频率：每 4 小时（launchd StartInterval=14400）
 - 状态文件：`{vault}/.notes_sync_state.json`（隐藏文件，不提交 git）
 - `run.sh` 不接 slot 参数、不写 `.stamps/`（连续 interval 模式，无补跑概念）；启动前把 `sync.log` 原地截断至最近 2000 行——日志由 plist `StandardOutPath` 重定向写入，故必须用 `cat` 原地覆盖而非 `mv`（换 inode 会丢输出）

@@ -7,7 +7,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/jiayi/Developer/ClaudeCode/agents/daily_brief/run.sh</string>
+        <string>__REPO_ROOT__/agents/daily_brief/run.sh</string>
     </array>
     <key>StartCalendarInterval</key>
     <dict>
@@ -17,8 +17,8 @@
         <integer>30</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>/Users/jiayi/Developer/ClaudeCode/agents/daily_brief/daily_brief.log</string>
+    <string>__REPO_ROOT__/agents/daily_brief/daily_brief.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/jiayi/Developer/ClaudeCode/agents/daily_brief/daily_brief.log</string>
+    <string>__REPO_ROOT__/agents/daily_brief/daily_brief.log</string>
 </dict>
 </plist>

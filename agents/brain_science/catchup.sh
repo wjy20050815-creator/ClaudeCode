@@ -2,8 +2,10 @@
 # 开机时检查脑科学推送是否被错过，若错过则补跑
 TODAY_JST=$(TZ="Asia/Tokyo" date "+%Y-%m-%d")
 NOW_TOTAL=$(( 10#$(TZ="Asia/Tokyo" date "+%H") * 60 + 10#$(TZ="Asia/Tokyo" date "+%M") ))
-STAMPDIR="/Users/jiayi/Developer/ClaudeCode/.stamps"
-SCRIPT="/Users/jiayi/Developer/ClaudeCode/agents/brain_science/run.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+STAMPDIR="$REPO_ROOT/.stamps"
+SCRIPT="$SCRIPT_DIR/run.sh"
 
 # 早晨推送：开机后 06:00 起触发（今日首次开机推送晨间知识）
 if [ $NOW_TOTAL -ge $((6 * 60 + 0)) ]; then

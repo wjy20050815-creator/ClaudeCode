@@ -7,7 +7,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/jiayi/Developer/ClaudeCode/agents/brain_science/run.sh</string>
+        <string>__REPO_ROOT__/agents/brain_science/run.sh</string>
         <string>night</string>
     </array>
     <key>StartCalendarInterval</key>
@@ -18,8 +18,8 @@
         <integer>30</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>/Users/jiayi/Developer/ClaudeCode/agents/brain_science/brain_science.log</string>
+    <string>__REPO_ROOT__/agents/brain_science/brain_science.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/jiayi/Developer/ClaudeCode/agents/brain_science/brain_science.log</string>
+    <string>__REPO_ROOT__/agents/brain_science/brain_science.log</string>
 </dict>
 </plist>

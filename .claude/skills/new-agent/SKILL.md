@@ -32,12 +32,12 @@ Scaffold a new agent directory matching this repo's conventions.
 
 ## Conventions to respect
 
-- Python interpreter: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`
-- All `run.sh` start with:
+- Python interpreter: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3` (overridable via `$PYTHON`)
+- All `run.sh` are self-locating (no hardcoded absolute paths) and inject only the keys they need:
   ```bash
-  set -a
-  source /Users/jiayi/Developer/ClaudeCode/.env
-  set +a
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+  eval "$("$REPO_ROOT/tools/load_env.sh" KEY1 KEY2 ...)"
   ```
 - Logs: `agents/<name>/<name>.log`. `run.sh` is responsible for tail-truncating to 500 lines (scheduled template does this).
 - Stamps: `.stamps/<slot>` at repo root (NOT `~/.stamps/`).

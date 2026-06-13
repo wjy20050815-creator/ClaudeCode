@@ -7,15 +7,15 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/jiayi/Developer/ClaudeCode/agents/notes_sync/run.sh</string>
+        <string>__REPO_ROOT__/agents/notes_sync/run.sh</string>
     </array>
     <key>StartInterval</key>
     <integer>14400</integer>
     <key>RunAtLoad</key>
     <false/>
     <key>StandardOutPath</key>
-    <string>/Users/jiayi/Developer/ClaudeCode/agents/notes_sync/sync.log</string>
+    <string>__REPO_ROOT__/agents/notes_sync/sync.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/jiayi/Developer/ClaudeCode/agents/notes_sync/sync.log</string>
+    <string>__REPO_ROOT__/agents/notes_sync/sync.log</string>
 </dict>
 </plist>

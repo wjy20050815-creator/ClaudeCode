@@ -11,7 +11,6 @@
       "Bash(launchctl *)"
     ],
     "additionalDirectories": [
-      "/Users/jiayi/Documents/Obsidian Vault/就活/_蒸馏システム/素材/YouTube",
       "/tmp"
     ]
   },
@@ -22,7 +21,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/jiayi/Developer/ClaudeCode/.claude/hooks/block-env.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-env.sh\""
           }
         ]
       }
@@ -33,7 +32,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/jiayi/Developer/ClaudeCode/.claude/hooks/plist-reload-reminder.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/plist-reload-reminder.sh\""
           }
         ]
       }

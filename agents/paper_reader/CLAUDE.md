@@ -10,7 +10,7 @@ URL / DOI / PDF パス → 全文抽出（PyMuPDF / BeautifulSoup）→ Claude A
 
 | 项目 | 路径 |
 |------|------|
-| Vault | `vault.paths.env` の `VAULT_ROOT`（レジストリ解決、現在 `/Users/jiayi/Documents/Obsidian Vault`） |
+| Vault | `vault.paths.env` の `VAULT_ROOT`（レジストリ解決、例 `$HOME/Documents/Obsidian Vault`） |
 | ノート出力 | `VAULT_PAPERS`（現在 `ゼミ发表/Papers/`） |
 | 概念ノート | `VAULT_CONCEPTS`（現在 `ゼミ发表/Concepts/`） |
 | 履歴 JSON | `agents/paper_reader/papers.json` |
